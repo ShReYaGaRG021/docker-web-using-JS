@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+<style>
+#d9 {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  margin-left: 10%;
+}
+#img1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#btn2 {
+  margin-left: 65%;
+}
+#btn3 {
+  margin-right: 10%;
+}
+.hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: darkblue;
+}
+</style>
+<script>
+        function lw() {
+                var xhr = new XMLHttpRequest();
+                var i = "docker ps -a";
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+        function lw1(){
+                var xhr = new XMLHttpRequest();
+                var i = "docker images";
+                 xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+        function lw2(){
+                var xhr = new XMLHttpRequest();
+                var i = "docker run -dit ";
+                var j = document.getElementById("inp1").value;
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i+j,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+        function lw3(){
+                var xhr = new XMLHttpRequest();
+                var i = "docker rm --force ";
+                var j = document.getElementById("inp2").value;
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i+j,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+
+        function social(path){
+                var i = path;
+                window.open(path);
+
+        }
+        function lw4() {
+                var xhr = new XMLHttpRequest();
+                var i = "docker ps";
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+        function lw5(){
+                var xhr = new XMLHttpRequest();
+                var i = "docker rmi ";
+                var j = document.getElementById("inp3").value;
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i+j,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+        function lw6(){
+                var xhr = new XMLHttpRequest();
+                var i = "docker pull ";
+                var j = document.getElementById("inp4").value;
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i+j,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+        function lw7() {
+                var xhr = new XMLHttpRequest();
+                var i = document.getElementById("inp5").value;
+                xhr.open("GET","http://192.168.29.172/cgi-bin/dock.py?x="+i,true);
+                xhr.send();
+                xhr.onload = function(){
+                        var output = xhr.responseText;
+                        document.getElementById('d8').innerHTML = output;
+         }
+         }
+
+</script>
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large"
+  onclick="w3_close()">Close &times;</button>
+  <a id='d2' onclick='lw()' class="w3-bar-item w3-button"><b>Docker Containers</b></a>
+  <a id='d3' onclick='lw1()' class="w3-bar-item w3-button"><b>Docker Images</b></a>
+  <a id='d6' onclick='lw4()' class="w3-bar-item w3-button"><b>Running Containers</b></a>
+  <a id='d4' onclick='lw2()' class="w3-bar-item w3-button"><div class="myDIV"><b>Launching a New Container</b></div>
+  <div class="hide">Enter the Image name below to launch the container. For eg: centos</div></a>
+  <p>Enter Image Name: <input id='inp1'><button onclick='lw2();'>Click</button></p>
+  <a id='d5' onclick='lw3()' class="w3-bar-item w3-button"><div class="myDIV"><b>Deleting Container</b></div>
+  <div class="hide">Enter the Container ID(only 1st four Id initials)</div></a>
+  <p>Enter Container ID: <input id='inp2'><button onclick='lw3();'>Click</button></p>
+  <a id='d7' onclick='lw5()' class="w3-bar-item w3-button"><div class="myDIV"><b>Deleting Docker Images</b></div>
+  <div class="hide">Enter the Image name below</div></a>
+  <p>Enter Image Name:<input id='inp3'><button onclick='lw5();'>Click</button></p>
+  <a id='d2' onclick='lw6()' class="w3-bar-item w3-button"><div class="myDIV"><b>Pulling Docker Images</b></div>
+  <div class="hide">Enter the Image name you want to download</div></a>
+  <p>Enter Image Name:<input id='inp4'><button onclick='lw6();'>Click</button></p>
+  <a id='d10' onclick='lw7()' class="w3-bar-item w3-button"><div class="myDIV"><b>[root@localhost ~]#</b></div>
+  <div class="hide">Enter the Custom code here</div></a>
+  <p><input id='inp5'><button onclick='lw7();'>Click</button></p>
+</div>
+
+<div id="main">
+
+<div class="w3-teal">
+  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="w3-container">
+          <h1>My Docker App &nbsp;<i id='btn2' onclick="social('https://www.linkedin.com/in/shreya-garg-1577241b7/')" class="fa fa-linkedin-square" style="font-size:48px;color:darkblue"></i>
+          <i id='btn3' onclick="social('https://github.com/ShReYaGaRG021')" class="fa fa-github" style="font-size:48px;color:black"></i></h1>
+  </div>
+</div>
+<!--<img src="https://devshell.io/content/images/2019/02/docker-amazon-ecs.jpg" style="width:100%">-->
+
+<div id='d7' class="w3-container">
+<img id='img1' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeI7WNwv-i-CB4IPC9ae4C3UyWK_O81CTZoIeNxpqsV28zRCdPrIAyjCynOECRnJ_UhA&usqp=CAU" style="width:40%;height:80px">
+<div class="w3-display-container w3-text-white">
+<img src="https://wallpaperaccess.com/full/1228028.jpg" alt="Lights" style="width:100%">
+<div class="w3-display-topleft w3-container"><pre><p id='d8'>[root@localhost ]#</p></pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "25%";
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+  document.getElementById("btn2").style.marginLeft = "auto";
+  document.getElementById("btn3").style.marginRight = "auto";
+
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+  document.getElementById("btn2").style.marginLeft = "65%";
+  document.getElementById("btn3").style.marginRight = "10%";
+}
+
+</script>
+
+</body>
+</html>
